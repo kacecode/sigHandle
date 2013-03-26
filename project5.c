@@ -148,3 +148,4 @@ void childSigHandle( int sigid )
 	default:
 		printf( "CHILD: Unexpected child signal id %d\n", sigid);
 	}
+}
