@@ -35,6 +35,15 @@ void parentAction( int childpid )
 	// bind handlers
 	sigaction( SIGUSR1, &SA, NULL );
 	sigaction( SIGUSR2, &SA, NULL );
+	
+	// Print Project Header
+	printf( "\nProject 5\nKacey Cole\nMichael Pugina\nCS3060-001\n\n" );
+	
+	printf( "PARENT %d: Spawning child %d\n\n", getpid(), childpid );
+	sleep(3);
+	printf( "PARENT: Child to start work.\n\n" );
+	kill( childpid, SIGUSR1 );  // send signal 1
+	// !! Currently testing against dummy child !!
 }
 
 // parentSigHandle
