@@ -17,3 +17,20 @@ void main()
 		//-1 => error
 		//else => parentAction()
 }
+
+// parentSigHandle
+// bound to parentAction signal handling events
+void parentSigHandle( int sigid )
+{
+  switch ( sigid )
+  {
+  case SIGUSR1:
+    printf( "*** Parent SIGUSR1 handler - Received 'task started' signal from child ***\n\n" );
+    break;
+  case SIGUSR2:
+    printf( "*** Parent SIGUSR2 handler - Received 'task completed' signal from child ***\n\n" );
+    break;
+  default:
+    printf( "PARENT: Weird stuff in the pipe - received signal id %d\n", sigid );
+  }
+}
