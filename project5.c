@@ -41,3 +41,20 @@ void parentSigHandle( int sigid )
     printf( "PARENT: Weird stuff in the pipe - received signal id %d\n", sigid );
   }
 }
+
+// ChildSigHandle
+// Should be bound to childAction signal handling event
+void childSigHandle( int sigid )
+{
+	switch(sigid)
+	{
+	case SIGUSR1:
+		printf( "*** Child SIGUSR1 handler - Received 'task start' signal from parent ***\n\n);
+		break;
+	case SIGUSR2;
+		printf( "*** Child SIGUSR2 handler - Received 'task complete verification' signal from parent ***\n\n);
+		break;
+	default:
+		printf( "CHILD: Unexpected child signal id %d\n", sigid);
+	}
+}
