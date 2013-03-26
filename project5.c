@@ -12,10 +12,24 @@ void childSigHandle( int sigid );
 void main()
 {
 	//fork
+	int childpid;
 	//figure out if parent or child
-		//0 => childAction()
-		//-1 => error
-		//else => parentAction()
+	switch( childpid = fork() )
+	{
+	//0 => childAction()
+	case 0:
+		childAction( );
+		break;
+	//-1 => error
+	case -1:
+		printf( "Error generating child" );
+		exit(-1);
+		break;
+	//else => parentAction()
+	defaut:
+		parentAction( childpid );
+		break;
+	}		
 }
 
 // parentAction tree
