@@ -43,7 +43,24 @@ void parentAction( int childpid )
 	sleep(3);
 	printf( "PARENT: Child to start work.\n\n" );
 	kill( childpid, SIGUSR1 );  // send signal 1
-	// !! Currently testing against dummy child !!
+	
+	// suspend until given SIGUSR1
+	sigfillset( &SS );
+	sigdelset( &SS, SIGUSR1 );
+	sigsuspend( &SS );
+  
+	// sleep to give child time
+	sleep(3);
+	
+	// send signal 2
+	kill( childpid, SIGUSR2 );
+	printf( "PARENT: Told child to notify of task completion\n\n" );
+  
+	// suspend until given SIGUSR2
+	sigdelset( &SS, SIGUSR2 );
+	sigsuspend( &SS );
+  
+	printf( "PARENT %d: Finished.\n\n", getpid() );
 }
 
 // parentSigHandle
