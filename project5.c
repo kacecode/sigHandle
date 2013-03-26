@@ -23,6 +23,18 @@ void main()
 // no conditions
 void parentAction( int childpid )
 {
+	// set signal options
+	struct sigaction SA;
+	sigset_t SS;
+  
+	sigemptyset( &SA.sa_mask );
+	SA.sa_flags = 0;
+	SA.sa_handler = parentSigHandle;
+	// finish setting signal options
+  
+	// bind handlers
+	sigaction( SIGUSR1, &SA, NULL );
+	sigaction( SIGUSR2, &SA, NULL );
 }
 
 // parentSigHandle
