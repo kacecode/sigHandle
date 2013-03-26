@@ -18,6 +18,13 @@ void main()
 		//else => parentAction()
 }
 
+// parentAction tree
+// takes pid of child for reference
+// no conditions
+void parentAction( int childpid )
+{
+}
+
 // parentSigHandle
 // bound to parentAction signal handling events
 void parentSigHandle( int sigid )
